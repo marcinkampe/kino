@@ -7,4 +7,10 @@ td {
 
 #suma {
   display: inline;
+}
+
+img {
+  width: 200px;
+  height: auto;
+  transition: transform 0.5s;
 }/*# sourceMappingURL=style.css.map */

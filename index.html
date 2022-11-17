@@ -13,15 +13,46 @@
     </header>
     <main>
         <h2>wybierz film oraz seans</h2>
-        <form action="parter.html" method="get" name="film">
+        <form action="parter.html" method="get" name="film" id="form" onchange="zaznaczone()">
             <h3>film</h3>
-            <div class="film">seans1 <input type="radio" name="seans" value="1"></div>
-            <div class="film">seans2 <input type="radio" name="seans" value="2"></div>
+            <label for="img1"><img class="img" src="avatar.jpg" id="d1" /></label>
+            <label for="img2"><img class="img" src="endgame.jpg" id="d2" /></label>
+            <label for="img3"><img class="img" src="mallcop.jpg" id="d3" /></label>
+            <input type="radio" name="seans" id="img1" value="1" hidden>
+            <input type="radio" name="seans" id="img2" value="2" hidden>
+            <input type="radio" name="seans" id="img3" value="3" hidden>
             <button type="submit">Wybierz miejsce</button>
         </form>
     </main>
 </body>
 <script>
+    function zaznaczone() {
+        let wartosc = document.forms.film.seans.value
+        let zdj1 = document.getElementById('d1')
+        let zdj2 = document.getElementById('d2')
+        let zdj3 = document.getElementById('d3')
+        zdj1.style.transform = "";
+        zdj2.style.transform = "";
+        zdj3.style.transform = "";
+
+        switch (wartosc) {
+            case '1':
+
+                zdj1.style.transform = "scale(1.1)";
+                break;
+            case '2':
+
+                zdj2.style.transform = "scale(1.1)";
+                break;
+            case '3':
+
+                zdj3.style.transform = "scale(1.1)";
+                break;
+
+            default:
+                break;
+        }
+    }
 
 </script>
 

@@ -15,7 +15,7 @@
             <option name="parter" value="parter">Parter</option>
         </select>
     </form>
-    <form action="parter.html" name="miejsca" method="get" id="miejsca_b" onclick="zaznaczone()">
+    <form action="parter.html" name="miejsca" method="get" id="miejsca_b">
 
     </form>
     <div id="wynik"></div>
@@ -42,14 +42,6 @@
             miejsca_b.innerHTML += "<input type='checkbox' name='" + i + "_b'>"
         }
 
-    }
-    function zaznaczone() {
-        wynik.innerHTML = " "
-        for (let i = 0; i < 5; i++) {
-            if (document.forms.miejsca[i + '_b'].checked) {
-                wynik.innerHTML += i + " "
-            }
-        }
     }
 
     let check_p = []

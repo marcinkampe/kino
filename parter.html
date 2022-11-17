@@ -15,7 +15,7 @@
             <option name="balkon" value="balkon">Balkon</option>
         </select>
     </form>
-    <form action="balkon.html" name="miejsca" method="get" id="miejsca_p" onclick="zaznaczone()">
+    <form action="balkon.html" name="miejsca" method="get" id="miejsca_p">
 
     </form>
     <div id="wynik"></div>
@@ -37,16 +37,6 @@
             miejsca_p.innerHTML += "<input type='checkbox' name='" + i + "_p' checked>"
         } else {
             miejsca_p.innerHTML += "<input type='checkbox' name='" + i + "_p'>"
-        }
-    }
-
-    function zaznaczone() {
-        wynik.innerHTML = " "
-        for (let i = 0; i < 3; i++) {
-            if (document.forms.miejsca[i + '_p'].checked) {
-                wynik.innerHTML += i + " "
-
-            }
         }
     }
 
