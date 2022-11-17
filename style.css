@@ -1,0 +1,14 @@
+table,
+th,
+td {
+  border: 2px solid orange;
+  border-collapse: collapse;
+}
+.container {
+  display: flex;
+  align-items: right;
+  justify-content: right;
+}
+.center {
+  align-self: center;
+}

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Parter</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h1>Wybierz miejsce na parterze</h1>
+    <form onchange="document.forms.miejsca.submit()">
+        <select name="jakie" selected="parter">
+            <option name="parter" value="parter">Parter</option>
+            <option name="balkon" value="balkon">Balkon</option>
+        </select>
+    </form>
+    <form action="balkon.html" name="miejsca" method="get" id="miejsca_p" onclick="zaznaczone()">
+        <div class="container">
+            <img src="kino.jpg" alt="kino" class="center">
+
+        </div>
+
+    </form>
+    <div id="wynik"></div>
+    <form action="koszyk.html" method="get" id="koszyk">
+        <button onclick="pobierz_dane()">Przejdź do koszyka</button>
+    </form>
+</body>
+<script>
+
+    // let film= new URL(location.href).searchParams.get('seans')
+    // console.log(film)
+
+    let miejsca_p = document.getElementById("miejsca_p")
+    let wynik = document.getElementById("wynik")
+
+    let check_p = []
+
+    for (let i = 0; i < 3; i++) {
+        check_p[i] = new URL(location.href).searchParams.get(i + '_p');
+        console.log('miejsce balkon:' + i + ' ' + check_p[i]);
+        if (check_p[i] == 'on') {
+            miejsca_p.innerHTML += "<input type='checkbox' name='" + i + "_p' checked>"
+        } else {
+            miejsca_p.innerHTML += "<input type='checkbox' name='" + i + "_p'>"
+        }
+    }
+
+    function zaznaczone() {
+        wynik.innerHTML = " "
+        for (let i = 0; i < 3; i++) {
+            if (document.forms.miejsca[i + '_p'].checked) {
+                wynik.innerHTML += i + " "
+
+            }
+        }
+
+    }
+
+    let check_b = []
+
+    for (let i = 0; i < 5; i++) {
+        check_b[i] = new URL(location.href).searchParams.get(i + '_b');
+        console.log('miejsce:' + i + ' ' + check_b[i]);
+        if (check_b[i] == 'on') {
+            miejsca_p.innerHTML += "<input type='hidden' name='" + i + "_b' value='on'>"
+        } else {
+            miejsca_p.innerHTML += "<input type='hidden' name='" + i + "_b' value='off'>"
+        }
+    }
+
+    function pobierz_dane() {
+        let koszyk = document.getElementById("koszyk");
+
+        for (let i = 0; i < 3; i++) {
+            let miejsce = document.forms.miejsca_p[i + '_p']
+            if (miejsce.checked) {
+                koszyk.innerHTML += "<input type='hidden' name='" + i + "_p' value='on'>"
+            } else {
+                koszyk.innerHTML += "<input type='hidden' name='" + i + "_p' value='off'>"
+            }
+        }
+
+        for (let i = 0; i < 5; i++) {
+            let miejsce = document.forms.miejsca_p[i + '_b'].value
+            if (miejsce == 'on') {
+                koszyk.innerHTML += "<input type='hidden' name='" + i + "_b' value='on'>"
+            } else {
+                koszyk.innerHTML += "<input type='hidden' name='" + i + "_b' value='off'>"
+            }
+        }
+
+        document.forms.koszyk.submit()
+    }
+
+</script>
+
+</html>

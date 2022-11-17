@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Koszyk</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>WYBIERZ RODZAJ BILETU DLA SWOICH MIEJSC</h1>
+    <table>
+        <tr>
+            <th colspan="2">CENNIK</th>
+        </tr>
+        <tr>
+            <td>Bilet normalny</td>
+            <td>30zł</td>
+        </tr>
+        <tr>
+            <td>Bilet ulgowy</td>
+            <td>15zł</td>
+        </tr>
+    </table>
+    <form action="koszyk.html" method="get" id="bilety" onclick="oblicz()">
+    </form>
+    <div id="suma">
+        <h2>ŁĄCZNA CENA BILETÓW: </h2>
+    </div>
+</body>
+<script>
+    let bilety=document.getElementById('bilety');
+    let suma=document.getElementById('suma');
+    let jakie_miejsca_p=[]
+    let jakie_miejsca_b=[]
+
+    bilety.innerHTML+="<h2>PARTER</h2>"
+    for (let i = 0; i < 3; i++) {
+            let miejsce_p= new URL(location.href).searchParams.get(i+'_p');
+            if (miejsce_p=='on') {
+                    numer=i+1
+                    bilety.innerHTML+="<p>Miejsce nr."+numer+"</p>"
+                    bilety.innerHTML+="<p>Normalny <input type='radio' name='"+i+"_p' value='normal'></p>"
+                    bilety.innerHTML+="<p>Ulgowy <input type='radio' name='"+i+"_p' value='ulg'></p><br>"
+                    jakie_miejsca_p.push(i)
+            }
+        }
+        
+    bilety.innerHTML+="<h2>BALKON</h2>"
+
+    for (let i = 0; i < 5; i++) {
+            let miejsce_b= new URL(location.href).searchParams.get(i+'_b');
+            if (miejsce_b=='on') {
+                numer=i+1
+                bilety.innerHTML+="<p>Miejsce nr."+numer+"</p>"
+                bilety.innerHTML+="<p>Normalny <input type='radio' name='"+i+"_b' value='normal'></p>"
+                bilety.innerHTML+="<p>Ulgowy <input type='radio' name='"+i+"_b' value='ulg'></p><br>"
+                jakie_miejsca_b.push(i)
+            }
+        }
+        
+        
+    function oblicz() {
+
+    for (let i = 0; i < 3; i++) {
+            let jaki_bilet= document.forms.bilety[i+'_p'].value
+            if (jaki_bilet=='normal') {
+                //tu liczymy cene
+            } else {
+                
+            }
+        }
+        
+
+    for (let i = 0; i < 5; i++) {
+            let miejsce_b= new URL(location.href).searchParams.get(i+'_b');
+            if (miejsce_b=='on') {
+                numer=i+1
+                bilety.innerHTML+="<p>Miejsce nr."+numer+"</p>"
+                bilety.innerHTML+="<p>Normalny <input type='radio' name='"+i+"_b' value='normal'></p>"
+                bilety.innerHTML+="<p>Ulgowy <input type='radio' name='"+i+"_b' value='ulg'></p><br>"
+            }
+        }
+    }
+</script>
+</html>
