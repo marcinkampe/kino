@@ -3,4 +3,8 @@ th,
 td {
   border: 2px solid orange;
   border-collapse: collapse;
+}
+
+#suma {
+  display: inline;
 }/*# sourceMappingURL=style.css.map */
