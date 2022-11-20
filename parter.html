@@ -8,20 +8,26 @@
 </head>
 
 <body>
-    <h1>Wybierz miejsce na parterze</h1>
-    <form onchange="document.forms.miejsca.submit()">
-        <select name="jakie" selected="parter">
-            <option name="parter" value="parter">Parter</option>
-            <option name="balkon" value="balkon">Balkon</option>
-        </select>
-    </form>
-    <form action="balkon.html" name="miejsca" method="get" id="miejsca_p">
+    <div class="container">
+        <header>
+            <h1>Wybierz miejsce na parterze</h1>
+        </header>
 
-    </form>
-    <div id="wynik"></div>
-    <form action="koszyk.html" method="get" id="koszyk">
-        <button onclick="pobierz_dane()">Przejdź do koszyka</button>
-    </form>
+        <form onchange="document.forms.miejsca.submit()" class="select">
+            <select name="jakie" selected="parter" class="wyslij_sel">
+                <option name="parter" value="parter">Parter</option>
+                <option name="balkon" value="balkon">Balkon</option>
+            </select>
+        </form>
+        <form action="balkon.html" name="miejsca" method="get" id="miejsca_p">
+
+        </form>
+        <div id="wynik"></div>
+        <form action="koszyk.html" method="get" id="koszyk">
+            <button onclick="pobierz_dane()" class="wyslij">Przejdź do koszyka</button>
+        </form>
+    </div>
+
 </body>
 <script>
 
@@ -30,19 +36,20 @@
 
     let check_p = []
 
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < 30; i++) {
         check_p[i] = new URL(location.href).searchParams.get(i + '_p');
         console.log('miejsce balkon:' + i + ' ' + check_p[i]);
+        numer = i + 1
         if (check_p[i] == 'on') {
-            miejsca_p.innerHTML += "<input type='checkbox' name='" + i + "_p' checked>"
+            miejsca_p.innerHTML += "<label>" + numer + "<input type='checkbox' class='check_p' name='" + i + "_p' checked></label>"
         } else {
-            miejsca_p.innerHTML += "<input type='checkbox' name='" + i + "_p'>"
+            miejsca_p.innerHTML += "<label>" + numer + "<input type='checkbox' class='check_p' name='" + i + "_p'></label>"
         }
     }
 
     let check_b = []
 
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 15; i++) {
         check_b[i] = new URL(location.href).searchParams.get(i + '_b');
         console.log('miejsce:' + i + ' ' + check_b[i]);
         if (check_b[i] == 'on') {
@@ -55,16 +62,16 @@
     function pobierz_dane() {
         let koszyk = document.getElementById("koszyk");
 
-        for (let i = 0; i < 3; i++) {
+        for (let i = 0; i < 30; i++) {
             let miejsce = document.forms.miejsca_p[i + '_p']
             if (miejsce.checked) {
-                koszyk.innerHTML += "<input type='hidden' name='" + i + "_p' value='on'>"
+                koszyk.innerHTML += "<input type='hidden'  name='" + i + "_p' value='on'>"
             } else {
-                koszyk.innerHTML += "<input type='hidden' name='" + i + "_p' value='off'>"
+                koszyk.innerHTML += "<input type='hidden'  name='" + i + "_p' value='off'>"
             }
         }
 
-        for (let i = 0; i < 5; i++) {
+        for (let i = 0; i < 15; i++) {
             let miejsce = document.forms.miejsca_p[i + '_b'].value
             if (miejsce == 'on') {
                 koszyk.innerHTML += "<input type='hidden' name='" + i + "_b' value='on'>"

@@ -8,64 +8,71 @@
 </head>
 
 <body>
-    <h1>WYBIERZ RODZAJ BILETU DLA SWOICH MIEJSC</h1>
-    <table>
-        <tr>
-            <th colspan="2">CENNIK</th>
-        </tr>
-        <tr>
-            <td>Bilet normalny</td>
-            <td>30zł</td>
-        </tr>
-        <tr>
-            <td>Bilet ulgowy</td>
-            <td>15zł</td>
-        </tr>
-    </table>
-    <form action="platnosc.html" name="bilet" method="get" id="bilety" onclick="oblicz()">
+    <div class="container">
 
-    </form>
 
-    <div>
-        <h2>ŁĄCZNA CENA BILETÓW: <div id="suma">0</div>zł
-        </h2>
+        <header>
+            <h1>WYBIERZ RODZAJ BILETU DLA SWOICH MIEJSC</h1>
+        </header>
 
+        <table>
+            <thead>
+                <tr>
+                    <th colspan="3">CENNIK</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td></td>
+                    <td>Bilet normalny</td>
+                    <td>Bilet ulgowy</td>
+                </tr>
+                <tr>
+                    <td>Parter</td>
+                    <td>30 zł</td>
+                    <td>15 zł</td>
+                </tr>
+                <tr>
+                    <td>Balkon</td>
+                    <td>60 zł</td>
+                    <td>30 zł</td>
+                </tr>
+            </tbody>
+        </table>
+        <form action="platnosc.html" name="bilet" method="get" id="bilety" onclick="oblicz()">
+        </form>
     </div>
 </body>
 <script>
     let bilety = document.getElementById('bilety');
-    let suma = document.getElementById('suma');
     let jakie_miejsca_p = []
     let jakie_miejsca_b = []
     let cena = 0
     let jaki_bilet
 
     bilety.innerHTML += "<h2>PARTER</h2>"
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < 30; i++) {
         let miejsce_p = new URL(location.href).searchParams.get(i + '_p');
         if (miejsce_p == 'on') {
             numer = i + 1
-            bilety.innerHTML += "<p>Miejsce nr." + numer + "</p>"
-            bilety.innerHTML += "<p>Normalny <input type='radio' name='" + i + "_p' value='normal' required></p>"
-            bilety.innerHTML += "<p>Ulgowy <input type='radio' name='" + i + "_p' value='ulg' required></p><br>"
+            bilety.innerHTML += "<div class='bilety'><p>Miejsce nr." + numer + "</p><p>Normalny <input type='radio' name='" + i + "_p' value='normal' required></p><p>Ulgowy <input type='radio' name='" + i + "_p' value='ulg' required></p><br></div>"
             jakie_miejsca_p.push(i)
         }
     }
 
     bilety.innerHTML += "<h2>BALKON</h2>"
 
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 15; i++) {
         let miejsce_b = new URL(location.href).searchParams.get(i + '_b');
         if (miejsce_b == 'on') {
             numer = i + 1
-            bilety.innerHTML += "<p>Miejsce nr." + numer + "</p>"
-            bilety.innerHTML += "<p>Normalny <input type='radio' name='" + i + "_b' value='normal' required></p>"
-            bilety.innerHTML += "<p>Ulgowy <input type='radio' name='" + i + "_b' value='ulg' required></p><br>"
+            bilety.innerHTML += "<div class='bilety'><p>Miejsce nr." + numer + "</p><p>Normalny <input type='radio' name='" + i + "_b' value='normal' required></p><p>Ulgowy <input type='radio' name='" + i + "_b' value='ulg' required></p><br></div>"
             jakie_miejsca_b.push(i)
         }
     }
-    bilety.innerHTML += "<button type='submit'>Przejdź do płatności</button>"
-
+    bilety.innerHTML += "<h2>ŁĄCZNA CENA BILETÓW: <div id='suma'>0</div>zł</h2>"
+    bilety.innerHTML += "<button type='submit' class='platnosc'>Przejdź do płatności</button>"
+    let suma = document.getElementById('suma');
     function oblicz() {
         cena = 0
 
@@ -88,10 +95,10 @@
             jaki_bilet = document.forms.bilet[jakie_miejsca_b[i] + '_b'].value
             switch (jaki_bilet) {
                 case 'normal':
-                    cena += 30
+                    cena += 60
                     break;
                 case 'ulg':
-                    cena += 15
+                    cena += 30
                     break;
                 default:
                     break;
