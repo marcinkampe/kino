@@ -21,7 +21,7 @@ body {
   margin: 0;
   padding: 0;
   background-color: #73261f;
-  color: #d2d9cc;
+  color: white;
 }
 header {
   text-align: center;
@@ -74,6 +74,24 @@ label {
   align-content: center;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
 }
+label {
+  position: relative;
+  cursor: pointer;
+  padding: 5px;
+  font-size: 22px;
+}
+label:hover {
+  background-color: #d96e48;
+  transition: background-color 0.3s;
+}
+.check_p{
+  height: 25px;
+  width: 25px;
+}
+.check_b{
+  height: 25px;
+  width: 25px;
+}
 #koszyk {
   margin: 30px;
   display: flex;
@@ -108,14 +126,39 @@ label {
   font-size: large;
 }
 #bilety {
-  display: grid;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+#bilety>h2 {
+  text-align: center;
+  flex-basis: 100%;
 }
 .bilety {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  width: 150px;
+  padding: 5px;
+  margin: 10px;
+  border: 1px solid #d96e48;
+}
+.bilety>label{
+  display: flex;
+  cursor: pointer;
+  font-size: 22px;
+}
+.bilety>label>input{
+  height: 25px;
+  width: 25px;
+  border-radius: 50%;
 }
 
 table,
 th,
 td {
+  font-size: large;
   border: 2px solid #d96e48;
   border-collapse: collapse;
 }

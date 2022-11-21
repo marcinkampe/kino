@@ -55,7 +55,7 @@
         let miejsce_p = new URL(location.href).searchParams.get(i + '_p');
         if (miejsce_p == 'on') {
             numer = i + 1
-            bilety.innerHTML += "<div class='bilety'><p>Miejsce nr." + numer + "</p><p>Normalny <input type='radio' name='" + i + "_p' value='normal' required></p><p>Ulgowy <input type='radio' name='" + i + "_p' value='ulg' required></p><br></div>"
+            bilety.innerHTML += "<div class='bilety'><h3>Miejsce  " + numer + "</h3><label>Normalny <input type='radio' tabindex='0'  name='" + i + "_p' value='normal' required></label><label>Ulgowy <input type='radio' name='" + i + "_p' value='ulg' required></label><br></div>"
             jakie_miejsca_p.push(i)
         }
     }
@@ -66,7 +66,7 @@
         let miejsce_b = new URL(location.href).searchParams.get(i + '_b');
         if (miejsce_b == 'on') {
             numer = i + 1
-            bilety.innerHTML += "<div class='bilety'><p>Miejsce nr." + numer + "</p><p>Normalny <input type='radio' name='" + i + "_b' value='normal' required></p><p>Ulgowy <input type='radio' name='" + i + "_b' value='ulg' required></p><br></div>"
+            bilety.innerHTML += "<div class='bilety'><h3>Miejsce  " + numer + "</h3><label>Normalny <input type='radio' name='" + i + "_b' value='normal' required></label><label>Ulgowy <input type='radio' name='" + i + "_b' value='ulg' required></label><br></div>"
             jakie_miejsca_b.push(i)
         }
     }
